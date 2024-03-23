@@ -10,14 +10,23 @@ print("bond          - to calculate the amount you'll have to pay on a home loan
 
 calculator_type = (input("Enter either 'investment' or 'bond' from the menu above to proceed:  ")).lower()
 
+if calculator_type == "cancel":
+    print("Exiting program...")
+    exit()
 
-if calculator_type == "investment":
+
+elif calculator_type == "investment":
     deposit = int(input("Enter the amount of money you're depositing: "))
     interest_rate = (float(input("Enter the interest rate per year: %"))) / 100
     time_years = int(input("Enter the number of years you plan to invest: "))
     interest = (input("There's two interest types 'simple' and 'compound'. Enter the type you want: ")).lower()
 
-    if interest == "simple":
+    if interest == "cancel":
+        print("Exiting program...")
+        exit()
+
+
+    elif interest == "simple":
         total_amount = deposit * (1 + interest_rate * time_years)
         print(f"The total amount you will get is {total_amount}£.")
 
@@ -33,6 +42,10 @@ elif calculator_type == "bond":
     house_value = int(input("Enter the present value of the house: "))
     monthly_interest_rate = (float(input("Enter the interest rate per year: %"))) / 1200
     time_month = int(input("Enter the number of months you plan to take to repay the bond: "))
+
+    if house_value == "cancel" or monthly_interest_rate == "cancel" or time_month == "cancel":
+        print("Exiting program...")
+        exit()
 
     repayment = (monthly_interest_rate * house_value) / (1 - (1 + monthly_interest_rate)**(-time_month))
     print(f"The amount you have to repay each month is {repayment}£.")
